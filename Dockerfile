@@ -6,7 +6,7 @@ ENV MONGO_VERSION 2.4.9
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 RUN echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list
 RUN apt-get -qq -y update
-RUN rm /usr/sbin/policy-rc.d
+RUN echo '#!/bin/sh' "\nexit 0" >  /usr/sbin/policy-rc.d
 RUN apt-get install -y mongodb-10gen=$MONGO_VERSION
 
 # Create default MongoDB data directory.
